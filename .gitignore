@@ -6,3 +6,7 @@
 /ZeroMQStudy/vcpkg_test/vcpkg_installed/x64-windows
 /ZeroMQStudy/vcpkg_test/x64/Debug
 /ZeroMQStudy/x64/Debug
+/ZeroMQStudy/request_reply_pattern/reply/x64/Debug
+/ZeroMQStudy/request_reply_pattern/request/x64/Debug
+/ZeroMQStudy/vcpkg_installed
+/.vs
