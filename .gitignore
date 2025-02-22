@@ -10,3 +10,7 @@
 /ZeroMQStudy/request_reply_pattern/request/x64/Debug
 /ZeroMQStudy/vcpkg_installed
 /.vs
+/ZeroMQStudy/publish/x64/Debug
+/ZeroMQStudy/reply/x64/Debug
+/ZeroMQStudy/request/x64/Debug
+/ZeroMQStudy/subscribe/x64/Debug
