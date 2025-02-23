@@ -1,0 +1,12 @@
+{
+  "dependencies": [
+    "cppzmq"
+  ]
+  ,
+  "overrides":[
+    {
+      "name" : "cppzmq",
+      "version":"4.10.0"
+    }
+  ]
+}

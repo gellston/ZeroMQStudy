@@ -13,7 +13,7 @@ int main()
 
     //  test 
     subscriber.set(zmq::sockopt::subscribe, "bonghoe");
-
+    
     //  Process 100 updates
     int update_nbr;
     for (update_nbr = 0; update_nbr < 100; update_nbr++) {
