@@ -1,20 +1,37 @@
-﻿// publish.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
+﻿#include <zmq.hpp>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-#include <iostream>
+#include <Windows.h>
+
+#define sleep(delay) Sleep(delay)
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    // 퍼블리셔 준비
+    zmq::context_t context(1);
+    zmq::socket_t publisher(context, zmq::socket_type::pub);
+    publisher.bind("tcp://*:5556");
+    //publisher.bind("ipc://weather.ipc");				// Not usable on Windows.
+
+    while (1) {
+
+
+        //  subscribe로 메세지 전달
+        //  메세지의 내용을 이용하여 토픽으로 필터링이 가능하다 (subscribe에서 필터링)
+        //  test라는 메세지가 포함되어있기 때문에 subscribe에서 test키워드로 필터링 가능
+
+        std::string topic = "bonghoe";
+        zmq::message_t topicMessage(topic);
+
+        std::string content = "there is no cow level";
+        zmq::message_t contentMessage(content);
+        
+        publisher.send(topicMessage, zmq::send_flags::sndmore);
+        publisher.send(contentMessage, zmq::send_flags::none);
+        sleep(1);
+    }
+    return 0;
 }
 
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
-
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.
