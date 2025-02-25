@@ -1,5 +1,7 @@
 ﻿
 #include <zmq.hpp>
+#include <thread>
+#include <chrono>
 #include <iostream>
 
 int main()
@@ -11,8 +13,9 @@ int main()
     zmq::socket_t subscriber(context, zmq::socket_type::sub);
     subscriber.connect("tcp://localhost:5556");
 
-    //  test 
-    subscriber.set(zmq::sockopt::subscribe, "bonghoe");
+    //  topic 설정 
+    subscriber.set(zmq::sockopt::subscribe, "");
+    
     
     //  Process 100 updates
     int update_nbr;
@@ -31,5 +34,7 @@ int main()
             std::string content(static_cast<char*>(contentMessage.data()), contentMessage.size());
             std::cout << "content : " << content << std::endl;
         }
+
+        std::this_thread::sleep_for(std::chrono::duration<double, std::nano>(1000));
     }
 }
