@@ -4,10 +4,10 @@
 #include <iostream>
 
 #include <zmq.hpp>
-#include <Windows.h>
 #include <string>
+#include <thread>
+#include <chrono>
 
-#define sleep(n)	Sleep(n)
 
 int main()
 {
@@ -24,7 +24,9 @@ int main()
         std::cout << "Received Hello" << std::endl;
 
         //  작업
-        sleep(1);
+        
+
+        std::this_thread::sleep_for(std::chrono::duration<double, std::micro>(1000));
 
         // 클라이언트로 응답
         std::string temp = "world!!";

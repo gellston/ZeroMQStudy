@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include <zmq.hpp>
+#include <thread>
+#include <chrono>
 
 int main()
 {
@@ -20,6 +22,9 @@ int main()
         zmq::message_t request(request_context);
         std::cout << "Sending Hello " << request_nbr << "..." << std::endl;
         auto send_result = socket.send(request, zmq::send_flags::none);
+
+
+        std::this_thread::sleep_for(std::chrono::duration<double, std::micro>(1000));
      
         
         //  Get the reply.
